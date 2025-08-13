@@ -19,15 +19,16 @@ public class Terminal<Sign,Meaning> extends Symbol<Sign,Meaning> {
 		return new Terminal<Sign,Meaning>(sign, meaning);
 	}
 	
-	@Override
-	public boolean equals(Object o) {
-		Terminal<?,?> terminal = (Terminal<?,?>) o;
-		
-		if (sign.equals(terminal.getSign()))
-			return true;
-		
-		return false;
-	}
+        @Override
+        public boolean equals(Object o) {
+                if (this == o)
+                        return true;
+                if (!(o instanceof Terminal<?, ?>))
+                        return false;
+
+                Terminal<?, ?> terminal = (Terminal<?, ?>) o;
+                return sign.equals(terminal.getSign());
+        }
 	
 	@Override
 	public int hashCode() {

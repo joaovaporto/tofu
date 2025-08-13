@@ -35,22 +35,23 @@ public class Symbol<Sign,Meaning> {
 		return "<" + sign.toString() + "," + meaning + ">";
 	}
 	
-	@Override
-	public boolean equals(Object o) {
-		Symbol<?,?> sym = (Symbol<?,?>) o;
-		
-		if (sign.equals(sym.getSign())) {
-			if (meaning == null && sym.getMeaning() == null)
-				return true;
-			
-			if (meaning != null)
-				if (sym.getMeaning() != null)
-					if (meaning.equals(sym.getMeaning()))
-						return true;
-		}
-		
-		return false;
-	}
+        @Override
+        public boolean equals(Object o) {
+                if (this == o)
+                        return true;
+                if (!(o instanceof Symbol<?, ?>))
+                        return false;
+
+                Symbol<?, ?> sym = (Symbol<?, ?>) o;
+
+                if (!sign.equals(sym.getSign()))
+                        return false;
+
+                if (meaning == null)
+                        return sym.getMeaning() == null;
+
+                return meaning.equals(sym.getMeaning());
+        }
 	
 	@Override
 	public int hashCode() {
